@@ -129,7 +129,7 @@ export default function Footer() {
           — All Rights Reserved.
         </p>
         <p className="text-neutral-600 text-[13px] mt-2">
-          Designed with precision • Crafted for clarity • Built on trust
+          Designed with precision • Crafted for clarity • Built on trust by <Link href='https://www.nandak.co' target="_blank">Nandak Innovations Private Limited</Link>
         </p>
       </div>
 
