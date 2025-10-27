@@ -4,19 +4,14 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 
 export default function HeroSection() {
-  const images = [
-    "/Hero.jpg",
-    "/Hero1.jpg",
-    "/Hero2.jpg",
-  ];
+  const images = ["/Hero.jpg", "/Hero1.jpg", "/Hero2.jpg"];
 
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);
-  const delay = 3000; 
+  const delay = 3000;
 
   useEffect(() => {
-   
     if (!isPaused) {
       intervalRef.current = window.setInterval(() => {
         setIndex((prev) => (prev + 1) % images.length);
@@ -24,13 +19,11 @@ export default function HeroSection() {
     }
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [isPaused, images.length]);
 
-  function goTo() {
+  function goTo(n) {
     setIndex(((n % images.length) + images.length) % images.length);
   }
 
@@ -45,21 +38,21 @@ export default function HeroSection() {
   return (
     <section className="bg-[#0b0b09] text-white py-12 md:py-16">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-  
+        {/* LEFT CONTENT */}
         <div className="flex flex-col">
-        
           <div className="mb-8">
-            <h1 className="font-playfair text-5xl md:text-5xl lg:text-[4.25rem] leading-tight md:leading-tight tracking-tight mb-4">
+            <h1 className="font-playfair text-5xl md:text-5xl lg:text-4xl leading-tight md:leading-tight tracking-tight mb-4">
               Your Trusted
               <br />
-              Property Legal Experts
+              Property Documentation Experts
             </h1>
             <p className="text-lg md:text-xl text-gray-300 font-serif max-w-xl">
-              Expert Legal Guidance for Property, NRI, and Real Estate Services
+              Expert guidance in property documentation, Power of Attorney
+              facilitation, and registration support for NRIs.
             </p>
           </div>
 
-      
+          {/* IMAGE SLIDER */}
           <div
             className="bg-transparent w-full overflow-hidden rounded-sm shadow relative"
             onMouseEnter={() => setIsPaused(true)}
@@ -87,7 +80,7 @@ export default function HeroSection() {
                 </div>
               ))}
 
-           
+              {/* Navigation */}
               <button
                 onClick={prev}
                 className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-md hover:bg-black/60"
@@ -103,7 +96,7 @@ export default function HeroSection() {
                 ›
               </button>
 
-              
+              {/* Dots */}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
                 {images.map((_, i) => (
                   <button
@@ -120,19 +113,23 @@ export default function HeroSection() {
           </div>
         </div>
 
-       
+        {/* CONTACT FORM */}
         <aside className="flex justify-center lg:justify-end">
           <div
             className="bg-[#d8dcd7] text-black w-full max-w-md lg:max-w-xl p-10 md:p-12 rounded-md"
             style={{ boxSizing: "border-box" }}
           >
-            <h2 className="font-playfair text-2xl md:text-3xl text-[#0b0b09] mb-8">Contact Us</h2>
+            <h2 className="font-playfair text-2xl md:text-3xl text-[#0b0b09] mb-8">
+              Contact Us
+            </h2>
 
             <form className="space-y-6 text-sm" onSubmit={(e) => e.preventDefault()}>
-       
+              {/* Name Fields */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block mb-2 font-medium text-[#0b0b09]">First name *</label>
+                  <label className="block mb-2 font-medium text-[#0b0b09]">
+                    First name *
+                  </label>
                   <input
                     type="text"
                     required
@@ -141,7 +138,9 @@ export default function HeroSection() {
                 </div>
 
                 <div>
-                  <label className="block mb-2 font-medium text-[#0b0b09]">Last name *</label>
+                  <label className="block mb-2 font-medium text-[#0b0b09]">
+                    Last name *
+                  </label>
                   <input
                     type="text"
                     required
@@ -150,9 +149,11 @@ export default function HeroSection() {
                 </div>
               </div>
 
-          
+              {/* Email */}
               <div>
-                <label className="block mb-2 font-medium text-[#0b0b09]">Email *</label>
+                <label className="block mb-2 font-medium text-[#0b0b09]">
+                  Email *
+                </label>
                 <input
                   type="email"
                   placeholder="example@email.com"
@@ -161,44 +162,46 @@ export default function HeroSection() {
                 />
               </div>
 
-            
+              {/* Service Area */}
               <div>
-                <label className="block mb-2 font-medium text-[#0b0b09]">Choose Service Area</label>
+                <label className="block mb-2 font-medium text-[#0b0b09]">
+                  Choose Service Area
+                </label>
                 <select className="w-full border-b border-[#0b0b09] bg-transparent py-2 focus:outline-none">
                   <option value="">Select a service</option>
                   <option>Property Report (Title Search, EC, Litigation Check)</option>
                   <option>Agreement to Sale</option>
-                  <option>Sale Deed</option>
-                  <option>Loan Settlement</option>
-                  <option>Property Searching</option>
-                  <option>Property Registration</option>
-                  <option>Property Mutation</option>
-                  <option>First Time Property Buyer</option>
+                  <option>Sale Deed Preparation</option>
+                  <option>Loan Settlement Assistance</option>
+                  <option>Property Search & Verification</option>
+                  <option>Property Registration Support</option>
+                  <option>Property Mutation / Transfer</option>
+                  <option>First-Time Property Buyer Assistance</option>
                   <option>Relinquishment Deed</option>
                   <option>Gift Deed</option>
                   <option>Certified True Copy</option>
-                  <option>Will & Trust</option>
-                  <option>Birth / Marriage Certificate</option>
-                  <option>NRI Legal Services</option>
-                  <option>Developer / Builder Legal Services</option>
+                  <option>Will & Trust Documentation</option>
+                  <option>Birth / Marriage Certificate Assistance</option>
+                  <option>Power of Attorney (POA) Execution</option>
+                  <option>Development Agreement Drafting</option>
                   <option>Rental Agreement</option>
-                  <option>Development Agreement</option>
-                  <option>POA (Power of Attorney) Execution</option>
-                  <option>Property Valuation</option>
+                  <option>Property Valuation Coordination</option>
                   <option>Deed Registration (NRI / Domestic)</option>
                 </select>
               </div>
 
-            
+              {/* Message */}
               <div>
-                <label className="block mb-5 font-medium text-[#0b0b09]">Write a message</label>
+                <label className="block mb-5 font-medium text-[#0b0b09]">
+                  Write a message
+                </label>
                 <textarea
                   rows={4}
                   className="w-full border p-2 rounded-md border-[#0b0b09] bg-transparent py-2 focus:outline-none resize-none"
                 />
               </div>
 
-          
+              {/* Submit Button */}
               <div className="pt-4">
                 <button
                   type="submit"
