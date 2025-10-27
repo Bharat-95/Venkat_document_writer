@@ -12,7 +12,7 @@ export default function ProcessSection() {
       icon: "📋",
     },
     {
-      title: "Legal Review & Preparation",
+      title: "Documentation & Preparation",
       desc: "Our experts verify title, draft agreements, and handle compliance with utmost precision and clarity.",
       icon: "⚖️",
     },
@@ -35,7 +35,7 @@ export default function ProcessSection() {
           </h2>
           <p className="mt-5 text-neutral-600 max-w-2xl mx-auto text-[15px]">
             Experience a refined and efficient process — tailored for today’s
-            property and NRI legal needs.
+            property and NRI documentation needs.
           </p>
         </div>
 

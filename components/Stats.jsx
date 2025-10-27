@@ -64,7 +64,7 @@ export default function StatsSection() {
             Proven Experience. Trusted by Clients.
           </h2>
           <p className="mt-5 text-neutral-400 max-w-2xl mx-auto text-[15px]">
-            Excellence in documentation, registration, and NRI legal services — built on precision and trust.
+            Excellence in documentation, registration, and NRI Documentation services — built on precision and trust.
           </p>
         </div>
 

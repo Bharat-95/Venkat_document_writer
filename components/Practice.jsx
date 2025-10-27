@@ -48,7 +48,7 @@ const PracticeAreas = () => {
               OUR
             </h2>
             <h3 className="font-playfair text-4xl lg:text-[46px] mt-2 text-[#111111]">
-              LEGAL SERVICES
+               SERVICES
             </h3>
             <p className="mt-4 text-sm text-neutral-600 max-w-xs">
               Professional legal solutions for Property, NRI, and Real Estate documentation.

@@ -5,28 +5,120 @@ import React, { useEffect, useRef, useState } from "react";
 
 const TESTIMONIALS = [
   {
-    text: "“P Venkat Rao Legal Associates made my property registration smooth and stress-free. Their team handled everything with professionalism.”",
-    name: "Rajesh Kumar",
+    name: "Sivaleela Kondeti",
+    text: "Venkat Rao Garu has excellent knowledge with years of experience in documentation. He makes sure the entire process is smooth and hassle-free and very professional. He provides clear communication and reliable services. Highly recommended.",
   },
   {
-    text: "“Excellent guidance for my NRI Power of Attorney process. They coordinated with the embassy and ensured all documentation was perfect.”",
-    name: "Priya Nair",
+    name: "Krishna Rajesh Malyala",
+    text: "I was searching for a document writer in Hyderabad and found Venkat Rao's contact at the top of my Google search results. After reading his positive reviews, I decided to give him a call. From the very first conversation, I was impressed by his professionalism.",
   },
   {
-    text: "“I was impressed by their clear explanations and transparency throughout my property verification process.”",
-    name: "Karthik Reddy",
+    name: "Pankaj Jain",
+    text: "Venkat Rao is an exceptionally knowledgeable and well-connected professional. His insights and influence in the field are fantastic, and he makes even complex documentation simple and clear. Most importantly, he is a genuine and trustworthy person.",
   },
   {
-    text: "“The team helped me draft and register my Sale Deed without any hassle. Truly trustworthy and efficient service.”",
-    name: "Sneha Patel",
+    name: "Pradeep Deepu",
+    text: "Venkat Rao is a highly knowledgeable document writer with years of experience. He ensures the entire documentation process is smooth and hassle-free. His guidance is clear, and he handles legal paperwork with great accuracy.",
   },
   {
-    text: "“Their expertise in real estate law is exceptional. I highly recommend them for all property documentation needs.”",
-    name: "Arvind Rao",
+    name: "Nidhi Govil",
+    text: "I highly recommend Mr. Venkat Rao for any property related matter. I had approached him after I failed to get answers from multiple advocates. He was the only one who resolved the issue quickly and efficiently.",
   },
   {
-    text: "“As an NRI, I found their end-to-end support invaluable. From POA drafting to property registration, they managed everything professionally.”",
-    name: "Deepa Menon",
+    name: "Bharath Sreevatsava",
+    text: "Venkat Rao and his team are knowledgeable in document writing with years of experience. He has good contacts with registration officers and ensures the entire documentation process is smooth and quick.",
+  },
+  {
+    name: "Malli Naani",
+    text: "Glad to meet you sir. The structure of the documentation is intuitive and logically organized. The tone is professional, friendly, and user-focused. Great balance between technical accuracy and clarity.",
+  },
+  {
+    name: "Bhushanam Pulagam",
+    text: "I approached them through Google Maps for SPA and Gift Deed property. The clarification Mr. Venkat Rao gave on my first call impressed me. His team's assistance throughout the process was excellent.",
+  },
+  {
+    name: "Phani Alapati",
+    text: "I highly recommend P Venkat Rao garu regarding any property-related documentation or registration process. He and his staff are always available to clarify any queries and provide timely updates.",
+  },
+  {
+    name: "Consult Uma",
+    text: "We availed Venkat Rao Garu’s services. He has excellent knowledge and clear communication. His staff is very efficient. The whole process was seamless.",
+  },
+  {
+    name: "Internet Identity",
+    text: "Thanks a lot P Venkat Rao garu for getting our registration done very efficiently and at a reasonable cost. No money was charged until the work was done. Highly trustworthy.",
+  },
+  {
+    name: "Sampath L",
+    text: "We recently took Mr. Venkat Rao garu’s document writing services and can say he and his team are the most professional in this segment. Detailed analysis and confident explanations.",
+  },
+  {
+    name: "Srinivas Cherla",
+    text: "Straightforward and humble person. Provides good advice and timely delivery of service. Gets the job done right, even if it means extra effort.",
+  },
+  {
+    name: "Swathi C",
+    text: "We have availed Venkat Rao Garu's services for our property MODT and later for cancellation of Mortgage. Seamless process, no hidden charges, and on-time delivery.",
+  },
+  {
+    name: "CS Murthy",
+    text: "I first met P. Venkat Rao garu 16 years ago. His knowledge on registration matters is great. His friendly nature and helpful attitude make every experience positive.",
+  },
+  {
+    name: "Harsha Gummadavelli",
+    text: "I am glad to share this review about Venkat Rao garu. He provided excellent and timely service for our recent registration needs, even while I was overseas.",
+  },
+  {
+    name: "Makarand Avhad",
+    text: "I approached P Venkat Rao garu for MODT registration. He explained all details with patience. His team provides fast, reliable service near Moosapet registration office.",
+  },
+  {
+    name: "Rama Krishna Jasty",
+    text: "I reached out to P Venkat Rao garu for Power of Attorney work. He quickly shared all required forms and guided me efficiently. Highly recommended!",
+  },
+  {
+    name: "Satish Nuvvula",
+    text: "I approached Venkat Rao garu for my flat registration. His team was always available and ensured every document was properly verified. Excellent experience.",
+  },
+  {
+    name: "Sumit Goyal",
+    text: "Very professional service and friendly nature. It was very smooth working with Mr. Venkat Rao garu and his hospitable team.",
+  },
+  {
+    name: "Jayadev Marreboyena",
+    text: "P. Venkat Rao garu is excellent in document writing and registration work. I am very impressed with his professional approach.",
+  },
+  {
+    name: "Ravikumar",
+    text: "Venkat Rao garu offers genuine service with professionalism. Very responsive to client needs. Made my registration experience smooth and easy.",
+  },
+  {
+    name: "V Sridhar Kalaga",
+    text: "Great guidance and support received from Shri Venkat Rao at the Registrar Office, Moosapet. Very customer-friendly and understands clients’ needs well.",
+  },
+  {
+    name: "Archana Sourav",
+    text: "Approached Sri Venkat Rao & Team for creation of Agreement of Sale and Sale Registration. The team was cooperative and precise from drafting to registration.",
+  },
+  {
+    name: "Sai Babu",
+    text: "Mr. Venkat Rao is very knowledgeable and experienced. He completed my work quickly despite challenges. Experience truly matters in documentation.",
+  },
+  {
+    name: "Seshagiri Devathi",
+    text: "Venkat Rao is a professional document writer with a lot of experience. I always have a great experience using his services.",
+  },
+  {
+    name: "Uma Sankar Reddy Vuyyuru",
+    text: "Mr. Venkat Rao is very professional and experienced. He has deep knowledge and handles documentation with great care.",
+  },
+  {
+    name: "Srinivas Srinaresh Irrinki",
+    text: "I have used his services several times for land issues. His drafting skills are outstanding and legally precise. Highly recommended.",
+  },
+  {
+    name: "Madhusudhan Reddy",
+    text: "There’s no second thought — Venkat Rao garu and his team did a wonderful job for my registration. Thanks for your excellent service!",
   },
 ];
 
@@ -107,7 +199,7 @@ export default function TestimonialsCarousel() {
               style={{ width: `${100 / slidesCount}%` }}
             >
               <blockquote className="text-[18px] md:text-[20px] leading-relaxed text-neutral-200 italic mb-8">
-                {s.text}
+                “{s.text}”
               </blockquote>
               <p className="text-sm font-medium text-[#d4a373]">{s.name}</p>
             </div>
@@ -115,24 +207,7 @@ export default function TestimonialsCarousel() {
         </div>
       </div>
 
-      <style jsx>{`
-        :global(body) {
-          margin: 0;
-        }
-        @media (max-width: 1024px) {
-          .min-h-[360px] {
-            min-height: 300px;
-          }
-        }
-        @media (max-width: 768px) {
-          .min-h-[360px] {
-            min-height: 260px;
-          }
-          .text-[18px] {
-            font-size: 16px;
-          }
-        }
-      `}</style>
+      
     </section>
   );
 }

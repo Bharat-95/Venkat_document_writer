@@ -15,7 +15,6 @@ const page = () => {
       <About/>
       <Process/>
       <Stats/>
-      <Founder/>
       <Testimonials/>
       
     </div>
