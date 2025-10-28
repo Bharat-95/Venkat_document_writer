@@ -210,7 +210,7 @@ export default function ContactPage() {
                 <div className="w-full h-56 md:h-64 rounded-lg overflow-hidden border border-[#eaeaea]">
                   <iframe
                     title="P Venkat Rao Associates - Sony Complex, Kukatpally"
-                    src={`https://www.google.com/maps?q=Sony+Complex,+Kukatpally,+Hyderabad&output=embed`}
+                    src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.6750518673716!2d78.4268669!3d17.475260299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ab0b0c29cf%3A0xb729c603ba7190af!2sP%20Venkat%20Rao%20Document%20Writer!5e0!3m2!1sen!2sin!4v1761671143493!5m2!1sen!2sin`}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
