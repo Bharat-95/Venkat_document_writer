@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 const PracticeAreas = () => {
   const areas = [
@@ -38,29 +39,87 @@ const PracticeAreas = () => {
     },
   ];
 
+  // refs + controls for framer-motion
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { threshold: 0.25 }); // not once: true
+  const leftControls = useAnimation();
+  const itemsControls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      leftControls.start("visible");
+      itemsControls.start("visible");
+    } else {
+      // Reset when scrolled out, so it animates again next time
+      leftControls.start("hidden");
+      itemsControls.start("hidden");
+    }
+  }, [inView, leftControls, itemsControls]);
+
+  const leftVariant = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const listVariant = {
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariant = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="bg-white text-[#0b0b09]">
+    <section ref={sectionRef} className="bg-white text-[#0b0b09]">
       <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[40%_60%]">
         {/* Left Panel */}
-        <div className="bg-[#f4f4f3] px-10 py-16 lg:py-24 flex items-start">
+        <motion.div
+          className="bg-[#f4f4f3] px-10 py-16 lg:py-24 flex items-start"
+          variants={leftVariant}
+          initial="hidden"
+          animate={leftControls}
+        >
           <div>
             <h2 className="font-playfair text-5xl lg:text-[64px] font-bold leading-[0.95] tracking-tight text-[#111111]">
               OUR
             </h2>
             <h3 className="font-playfair text-4xl lg:text-[46px] mt-2 text-[#111111]">
-               SERVICES
+              SERVICES
             </h3>
             <p className="mt-4 text-sm text-neutral-600 max-w-xs">
               Professional solutions for Property, NRI, and Real Estate documentation.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Grid */}
         <div className="px-8 md:px-12 py-16 lg:py-24">
-          <div className="max-w-[800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+          <motion.div
+            className="max-w-[800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12"
+            initial="hidden"
+            animate={itemsControls}
+            variants={listVariant}
+          >
             {areas.map((area, index) => (
-              <div key={index} className="flex items-start gap-4">
+              <motion.div
+                key={index}
+                className="flex items-start gap-4"
+                variants={itemVariant}
+              >
                 <div className="w-3 h-3 bg-[#b8962e] mt-1 rounded-sm flex-shrink-0"></div>
                 <div>
                   <h4 className="text-lg font-semibold text-[#0b0b09] tracking-wide">
@@ -70,9 +129,9 @@ const PracticeAreas = () => {
                     {area.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

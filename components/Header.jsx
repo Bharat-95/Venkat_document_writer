@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { HiOutlineMenu, HiOutlineX, HiChevronDown, HiChevronUp } from "react-icons/hi";
+import {
+  HiOutlineMenu,
+  HiOutlineX,
+  HiChevronDown,
+  HiChevronUp,
+} from "react-icons/hi";
 
 const Header = () => {
   const [panelOpen, setPanelOpen] = useState(false);
@@ -59,12 +64,12 @@ const Header = () => {
         />
       )}
 
-      {/* Slide Panel */}
+      {/* Slide Panel (Now slides from top instead of right) */}
       <div
         aria-hidden={!panelOpen}
-        className={`fixed top-0 right-0 h-screen bg-[#0b0b09] text-white z-50 shadow-xl transform transition-transform duration-500 ease-in-out
-        ${panelOpen ? "translate-x-0" : "translate-x-full"}
-        w-full md:w-2/5 lg:w-2/4`}
+        className={`fixed top-0 left-0 w-full bg-[#0b0b09] text-white z-50 shadow-xl transform transition-transform duration-500 ease-in-out
+        ${panelOpen ? "translate-y-0" : "-translate-y-full"}
+        h-[100vh] md:h-[85vh] lg:h-[80vh] border-b border-white/10`}
       >
         <div className="flex flex-col h-full">
           {/* Header inside menu */}

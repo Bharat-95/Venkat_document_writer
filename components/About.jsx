@@ -2,14 +2,69 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 const AboutSection = () => {
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { threshold: 0.2 }); // re-triggers on every entry
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
+  const badgeControls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      leftControls.start("visible");
+      rightControls.start("visible");
+      badgeControls.start("visible");
+    } else {
+      // reset so animation plays again on re-entry
+      leftControls.start("hidden");
+      rightControls.start("hidden");
+      badgeControls.start("hidden");
+    }
+  }, [inView, leftControls, rightControls, badgeControls]);
+
+  const leftVariant = {
+    hidden: { opacity: 0, x: -24 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.55, ease: "easeOut" },
+    },
+  };
+
+  const rightVariant = {
+    hidden: { opacity: 0, x: 24 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut", delay: 0.08 },
+    },
+  };
+
+  const badgeVariant = {
+    hidden: { opacity: 0, scale: 0.9, y: 10 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: "easeOut", delay: 0.14 },
+    },
+  };
+
   return (
-    <section className="bg-[#0b0b09] text-white py-20 lg:py-28">
+    <section
+      ref={sectionRef}
+      className="bg-[#0b0b09] text-white py-20 lg:py-28"
+    >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* LEFT CONTENT */}
-        <div>
+        <motion.div
+          variants={leftVariant}
+          initial="hidden"
+          animate={leftControls}
+        >
           {/* small label */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#d4a373]/20 text-[#d4a373] text-lg font-serif">
@@ -71,10 +126,15 @@ const AboutSection = () => {
           >
             Learn More
           </Link>
-        </div>
+        </motion.div>
 
         {/* RIGHT IMAGE with badge */}
-        <div className="relative">
+        <motion.div
+          className="relative"
+          variants={rightVariant}
+          initial="hidden"
+          animate={rightControls}
+        >
           <div className="overflow-hidden rounded-lg">
             <Image
               src="/About.png" // Update your About image here
@@ -87,13 +147,18 @@ const AboutSection = () => {
           </div>
 
           {/* Badge overlay */}
-          <div className="absolute bottom-8 left-8 bg-[#d4a373] text-[#0b0b09] p-6 rounded-lg shadow-lg">
+          <motion.div
+            className="absolute bottom-8 left-8 bg-[#d4a373] text-[#0b0b09] p-6 rounded-lg shadow-lg"
+            variants={badgeVariant}
+            initial="hidden"
+            animate={badgeControls}
+          >
             <div className="text-5xl font-bold leading-none">10+</div>
             <div className="text-sm font-serif italic mt-1">
               Years of Documentation Experience
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

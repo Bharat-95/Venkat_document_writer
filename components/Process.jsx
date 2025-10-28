@@ -1,8 +1,9 @@
 // components/ProcessSection.jsx
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 export default function ProcessSection() {
   const steps = [
@@ -23,8 +24,44 @@ export default function ProcessSection() {
     },
   ];
 
+  // Framer Motion: section in-view & controls (replay on re-entry)
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { threshold: 0.18 }); // not once:true so it replays
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [inView, controls]);
+
+  const containerVariant = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.14,
+        delayChildren: 0.06,
+      },
+    },
+  };
+
+  const itemVariant = {
+    hidden: { opacity: 0, y: 24, rotate: -1 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
-    <section className="bg-gradient-to-b from-white to-[#faf8f6] text-[#0b0b09] py-10 lg:py-10">
+    <section
+      ref={sectionRef}
+      className="bg-gradient-to-b from-white to-[#faf8f6] text-[#0b0b09] py-10 lg:py-10"
+    >
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-sm tracking-[0.2em] font-semibold text-[#d4a373] uppercase">
@@ -39,11 +76,18 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-3">
+        {/* Animated container */}
+        <motion.div
+          className="grid gap-10 md:grid-cols-3"
+          variants={containerVariant}
+          initial="hidden"
+          animate={controls}
+        >
           {steps.map((s, idx) => (
-            <div
+            <motion.div
               key={idx}
               className="group p-8 rounded-2xl shadow-md bg-white border border-[#eee] hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+              variants={itemVariant}
             >
               <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#d4a373]/10 text-[#d4a373] text-3xl mb-6 group-hover:bg-[#d4a373] group-hover:text-white transition-all">
                 {s.icon}
@@ -60,11 +104,9 @@ export default function ProcessSection() {
               >
                 Learn More →
               </Link>
-            </div>
+            </motion.div>
           ))}
-        </div>
-
-       
+        </motion.div>
       </div>
     </section>
   );

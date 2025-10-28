@@ -25,7 +25,7 @@ const Banner = () => {
       </div>
       <div className='flex gap-4 items-center'>
       <div className='flex items-center gap-2'><MdOutlineLocalPhone className='w-4 h-4'/> +91 9347031611</div>
-      <div className='flex items-center gap-2'><MdOutlineWhatsapp className='w-4 h-4'/> +91 *********</div>
+      <div className='flex items-center gap-2'><MdOutlineLocalPhone className='w-4 h-4'/> +91 7842514644</div>
       </div>
     </div>
   )

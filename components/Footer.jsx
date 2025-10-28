@@ -84,15 +84,25 @@ export default function Footer() {
                 <FaPhoneAlt />
               </div>
               <a href="tel:+919347031611" className="hover:text-[#d4a373] transition-all">
-                +91 93470 31611
+                +91 93470 31611 
               </a>
+            
+            </li>
+             <li className="flex items-center gap-3">
+              <div className="bg-[#1a1a1a] p-2 rounded-md text-[#d4a373]">
+                <FaPhoneAlt />
+              </div>
+              <a href="tel:+919347031611" className="hover:text-[#d4a373] transition-all">
+                +91 78425 14644
+              </a>
+            
             </li>
             <li className="flex items-center gap-3">
               <div className="bg-[#1a1a1a] p-2 rounded-md text-[#d4a373]">
                 <FaEnvelope />
               </div>
-              <a href="mailto:contact@pvrao.legal" className="hover:text-[#d4a373] transition-all">
-                contact@pvrao.legal
+              <a href="mailto: pvenkat407@gmail.com" className="hover:text-[#d4a373] transition-all">
+                pvenkat407@gmail.com
               </a>
             </li>
           </ul>

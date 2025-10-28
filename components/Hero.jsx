@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 export default function HeroSection() {
   const images = ["/Hero.jpg", "/Hero1.jpg", "/Hero2.jpg"];
@@ -22,7 +23,8 @@ export default function HeroSection() {
     };
   }, [isPaused, images.length]);
 
-  function goTo() {
+  // fixed goTo signature
+  function goTo(n) {
     setIndex(((n % images.length) + images.length) % images.length);
   }
 
@@ -34,10 +36,48 @@ export default function HeroSection() {
     goTo(index - 1);
   }
 
+  // Framer Motion: trigger on scroll
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { threshold: 0.2, once: true });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [inView, controls]);
+
+  const leftVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut", delay: 0.05 },
+    },
+  };
+
+  const rightVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut", delay: 0.18 },
+    },
+  };
+
   return (
-    <section className="bg-[#0b0b09] text-white py-12 md:py-16">
+    <section
+      ref={sectionRef}
+      className="bg-[#0b0b09] text-white py-12 md:py-16"
+    >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div className="flex flex-col gap-8">
+        {/* LEFT: content — animated on scroll via Framer Motion */}
+        <motion.div
+          className="flex flex-col gap-8"
+          initial="hidden"
+          animate={controls}
+          variants={leftVariants}
+        >
           <div>
             <h1 className="font-playfair text-5xl md:text-6xl leading-tight tracking-tight mb-4">
               Your Trusted
@@ -98,10 +138,14 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div
+        {/* RIGHT: carousel — animated on scroll via Framer Motion */}
+        <motion.div
           className="bg-transparent w-full overflow-hidden rounded-sm shadow relative min-h-[350px]"
+          initial="hidden"
+          animate={controls}
+          variants={rightVariants}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           aria-roledescription="carousel"
@@ -168,7 +212,7 @@ export default function HeroSection() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

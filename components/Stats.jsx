@@ -4,10 +4,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-function useCountUp(target, duration = 1400) {
+/**
+ * useCountUp(startFlag, target, duration)
+ * - starts counting from 0 -> target when startFlag is true
+ * - resets to 0 when startFlag is false (so it can replay)
+ */
+function useCountUp(startFlag, target, duration = 1400) {
   const [value, setValue] = useState(0);
   const rafRef = useRef(null);
+
   useEffect(() => {
+    // If not started, reset value and cancel any running RAF
+    if (!startFlag) {
+      setValue(0);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      return;
+    }
+
     let start = null;
     const step = (timestamp) => {
       if (start === null) start = timestamp;
@@ -17,19 +33,26 @@ function useCountUp(target, duration = 1400) {
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(step);
       } else {
-        setValue(target);
+        setValue(target); // ensure exact target at end
+        rafRef.current = null;
       }
     };
+
     rafRef.current = requestAnimationFrame(step);
+
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
-  }, [target, duration]);
+  }, [startFlag, target, duration]);
+
   return value;
 }
 
-function Stat({ label, value, suffix = "" }) {
-  const animated = useCountUp(value, 1400);
+function Stat({ label, value, suffix = "", start }) {
+  const animated = useCountUp(start, value, 1400);
   return (
     <div className="flex flex-col items-center text-center">
       <div className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#d4a373] tracking-tight">
@@ -53,8 +76,39 @@ export default function StatsSection() {
     { label: "Successful Registrations", value: 1800, suffix: "+" },
   ];
 
+  // IntersectionObserver to trigger counting when section is in view
+  const sectionRef = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+          } else {
+            // Reset so it can replay when user scrolls back
+            setInView(false);
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    obs.observe(sectionRef.current);
+
+    return () => {
+      obs.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="w-full bg-gradient-to-b from-[#0b0b09] via-[#141310] to-[#1c1b18] text-white py-20 lg:py-28">
+    <section
+      ref={sectionRef}
+      className="w-full bg-gradient-to-b from-[#0b0b09] via-[#141310] to-[#1c1b18] text-white py-20 lg:py-28"
+    >
       <div className="max-w-[1400px] mx-auto px-6 w-full">
         <div className="text-center mb-14">
           <p className="text-sm font-semibold tracking-[0.15em] uppercase text-[#d4a373]">
@@ -74,7 +128,7 @@ export default function StatsSection() {
               key={idx}
               className="p-10 bg-[#12110e]/70 border border-[#2d2b27] rounded-2xl shadow-lg shadow-black/30 hover:scale-[1.03] transition-transform duration-300"
             >
-              <Stat label={s.label} value={s.value} suffix={s.suffix} />
+              <Stat label={s.label} value={s.value} suffix={s.suffix} start={inView} />
             </div>
           ))}
         </div>

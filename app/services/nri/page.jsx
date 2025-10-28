@@ -1,4 +1,3 @@
-// app/services/nri/page.jsx
 "use client";
 
 import React from "react";
@@ -6,12 +5,31 @@ import Link from "next/link";
 import PracticeAreas from "../../../components/Practice";
 import TestimonialsCarousel from "../../../components/Testimonials";
 import FounderSection from "../../../components/Founder";
+import { motion } from "framer-motion";
 
 const GOLD_FROM = "#f5e7c5";
 const GOLD_VIA = "#d4af37";
 const GOLD_TO = "#b8962e";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
 
+const fadeLeft = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1 },
+};
 
 export default function NriServices() {
   const nriServices = [
@@ -92,7 +110,15 @@ export default function NriServices() {
 
   return (
     <main className="bg-white text-[#0b0b09]">
-      <section className="relative bg-[#0b0b09] text-white py-24 lg:py-32 overflow-hidden">
+      {/* HERO - slow, elegant fade + slide down */}
+      <motion.section
+        className="relative bg-[#0b0b09] text-white py-24 lg:py-32 overflow-hidden"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
+        variants={fadeUp}
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/20 via-[#0b0b09] to-[#0b0b09]" />
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
           <h1
@@ -117,43 +143,75 @@ export default function NriServices() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
+      {/* SERVICES GRID - staggered scale in */}
       <section className="py-16 lg:py-24 bg-[#fafafa]">
         <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 1.4 }}
+            variants={fadeLeft}
+          >
             <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">NRI Services</p>
             <h2 className="font-playfair text-3xl md:text-4xl mt-3 font-semibold">Tailored services for NRIs</h2>
             <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
               We manage the entire NRI workflow—right from drafting POA to registration and handover—ensuring compliance, embassy coordination and peace of mind.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {nriServices.map((s, idx) => (
-              <div key={idx} className="p-7 rounded-2xl border border-[#eee] bg-white shadow-sm hover:shadow-xl transition-all">
+              <motion.div
+                key={idx}
+                className="p-7 rounded-2xl border border-[#eee] bg-white shadow-sm hover:shadow-xl transition-all"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 1.2, delay: idx * 0.12 }}
+                variants={scaleIn}
+              >
                 <div className="text-3xl mb-4">{s.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
                 <p className="text-neutral-600 text-[15px]">{s.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* WORKFLOW - each row slides from alternate sides */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 1.4 }}
+            variants={fadeRight}
+          >
             <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">Step-by-step Workflow</p>
             <h2 className="font-playfair text-3xl md:text-4xl mt-3 font-semibold">NRI Property Registration via Power of Attorney</h2>
             <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
               Clear stages and what to expect at each step — designed for NRIs who need dependable remote support.
             </p>
-          </div>
+          </motion.div>
 
           <div className="space-y-6">
             {workflowSteps.map((w, i) => (
-              <div key={i} className="p-6 rounded-xl border border-[#eee] bg-white shadow-sm flex gap-6 items-start">
+              <motion.div
+                key={i}
+                className="p-6 rounded-xl border border-[#eee] bg-white shadow-sm flex gap-6 items-start"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.18 }}
+                transition={{ duration: 1.35, delay: i * 0.08 }}
+                variants={i % 2 === 0 ? fadeLeft : fadeRight}
+              >
                 <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#f7f2e6] text-[#b8962e] font-semibold text-lg">
                   {String(i + 1).padStart(2, "0")}
                 </div>
@@ -161,7 +219,7 @@ export default function NriServices() {
                   <h4 className="text-lg font-semibold mb-1">{w.step}</h4>
                   <p className="text-neutral-600">{w.text}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -175,7 +233,15 @@ export default function NriServices() {
         </div>
       </section>
 
-      <section className="bg-[#0b0b09] text-white py-20">
+      {/* WHY CHOOSE US - slide up and slight scale */}
+      <motion.section
+        className="bg-[#0b0b09] text-white py-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 1.6 }}
+        variants={{ hidden: { opacity: 0, y: 50, scale: 0.98 }, visible: { opacity: 1, y: 0, scale: 1 } }}
+      >
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
@@ -198,7 +264,13 @@ export default function NriServices() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <motion.div
+              className="bg-white rounded-2xl p-6 shadow-lg"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }}
+              transition={{ duration: 1.5 }}
+            >
               <h4 className="text-lg font-semibold mb-4 text-[#0b0b09]">Documents commonly required</h4>
               <ul className="text-neutral-700 space-y-3">
                 <li>• Proof of identity (passport/ Aadhaar/ PAN)</li>
@@ -207,13 +279,19 @@ export default function NriServices() {
                 <li>• No-objection certificates (if applicable)</li>
                 <li>• Bank/loan documents (if loan/settlement involved)</li>
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-
-      <section className="bg-white py-16">
+      {/* CTA - slow fade in */}
+      <motion.section
+        className="bg-white py-16"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 1.8 }}
+      >
         <div className="max-w-[900px] mx-auto px-6 text-center">
           <h3 className="font-playfair text-2xl text-[#0b0b09] mb-4">Ready to begin?</h3>
           <p className="text-neutral-600 mb-6">Request our NRI intake form and we'll guide you step-by-step — from POA drafting to deed registration.</p>
@@ -221,7 +299,7 @@ export default function NriServices() {
             Request NRI Assistance
           </Link>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
