@@ -2,13 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
-import PracticeAreas from "../../../components/Practice";
 import { CheckCircle } from "lucide-react";
 
 const GOLD_FROM = "#f5e7c5";
 const GOLD_VIA = "#d4af37";
 const GOLD_TO = "#b8962e";
-
 
 export default function IndiaServices() {
   const keyServices = [
@@ -61,7 +59,7 @@ export default function IndiaServices() {
             India Property Documentation Services
           </h1>
           <p className="text-neutral-300 max-w-2xl text-lg">
-            We specialize in end-to-end legal documentation and registration
+            We specialize in end-to-end document drafting and registration
             support for property transactions across India. From Sale Deeds to
             Title Verification — we ensure accuracy, compliance, and peace of
             mind.
@@ -77,15 +75,16 @@ export default function IndiaServices() {
         </div>
       </section>
 
-      {/* Core Services */}
-      <section className="py-20 lg:py-28 bg-[#fafafa]">
-        <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
+      {/* Comprehensive Documentation Support in India Section */}
+      <section className="relative">
+        {/* Top white background area for title */}
+        <div className="bg-white py-16">
+          <div className="max-w-[1300px] mx-auto px-6 lg:px-12 text-center">
             <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">
               OUR SERVICES
             </p>
             <h2 className="font-playfair text-4xl md:text-5xl mt-3 font-semibold">
-              Comprehensive Legal Support in India
+              Comprehensive Documentation Support in India
             </h2>
             <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
               Whether you’re purchasing, gifting, or registering property, our
@@ -93,28 +92,101 @@ export default function IndiaServices() {
               registration.
             </p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {keyServices.map((service, idx) => (
-              <div
-                key={idx}
-                className="p-8 rounded-2xl border border-[#eee] bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all"
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-lg font-semibold text-[#0b0b09] mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-neutral-600 text-[15px] leading-relaxed">
-                  {service.desc}
-                </p>
+        {/* Split background starts here (Black 70% | White 30%) */}
+        <div className="relative py-10">
+          {/* Split background */}
+          <div
+            className="absolute inset-0 flex pointer-events-none"
+            aria-hidden="true"
+          >
+            <div className="w-[70%] bg-[#0b0b09]" />
+            <div className="w-[30%] bg-[#fafafa]" />
+          </div>
+
+          {/* Foreground content */}
+          <div className="relative z-10   flex flex-col lg:flex-row gap-10 items-start">
+            {/* LEFT: Black panel */}
+            <div className="flex-1 bg-[#0b0b09] text-white rounded-2xl p-10 shadow-md">
+              <h3 className="text-3xl font-semibold mb-6">
+                Secure Your Real Estate Investments
+              </h3>
+
+              <p className="text-neutral-300 leading-relaxed mb-4">
+                At P Venkat Rao, we offer comprehensive property documentation services in Kolkata, specializing in sale deed drafting, property title verification, and seamless registration with the Sub-Registrar Office. Our expert team ensures proper compliance for all real estate transactions, making us the preferred choice for Indians, NRIs, First-Time Property Buyers, and property investors.
+              </p>
+
+              <p className="text-neutral-300 leading-relaxed mb-4">
+                We provide end-to-end solutions that protect your property rights and ensure smooth ownership transfer. From document preparation to sale deed registration and title clearance, we guide you through each step with transparent, reliable, and efficient support.
+              </p>
+
+              <p className="text-neutral-300 leading-relaxed">
+                Whether you're purchasing residential or commercial property, P Venkat Rao helps you navigate the complexities of property registration, offering hassle-free services with guaranteed protection.
+              </p>
+            </div>
+
+            <div className="flex-1 relative">
+              <div className="relative rounded-2xl overflow-hidden h-[600px]">
+                <div className="relative z-10 p-6 h-full overflow-y-auto scroll-smooth space-y-8 pr-4">
+                  {keyServices.map((service, idx) => (
+                    <div key={idx} className="relative flex items-start">
+                      <div
+                        className="absolute top-10 flex items-center justify-center z-50"
+                        style={{
+                          transform: "translateX(-25%)",
+                          width: "60px",
+                          height: "60px",
+                        }}
+                      >
+                        <div className="relative w-full h-full rounded-full bg-white flex items-center justify-center shadow-md">
+                          {/* rotating ring */}
+                          <svg
+                            className="absolute w-full h-full animate-spin-slow"
+                            viewBox="0 0 100 100"
+                          >
+                            <path
+                              d="M50 10
+           A40 40 0 0 1 50 90"
+                              stroke="#bcbcbc"
+                              strokeWidth="3"
+                              fill="none"
+                            />
+
+                            <path
+                              d="M50 10
+           A40 40 0 0 0 50 90"
+                              stroke="#bcbcbc"
+                              strokeWidth="3"
+                              strokeDasharray="4 6"
+                              fill="none"
+                            />
+                          </svg>
+
+                          {/* Number inside */}
+                          <span className="text-[#0b0b09] font-semibold text-lg relative z-10">
+                            {idx + 1}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* White card */}
+                      <div className="bg-white rounded-2xl p-6 border border-[#eaeaea] shadow-[0_4px_10px_rgba(0,0,0,0.06)] transition-transform hover:shadow-[0_6px_14px_rgba(0,0,0,0.08)] ml-6">
+                        <h4 className="text-lg font-semibold text-[#0b0b09] mb-2">
+                          {service.title}
+                        </h4>
+                        <p className="text-neutral-600 text-sm leading-relaxed">
+                          {service.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Use the Practice Areas Section */}
-      <PracticeAreas />
 
       {/* How We Work Section */}
       <section className="bg-[#0b0b09] text-white py-20 lg:py-28">
@@ -145,7 +217,7 @@ export default function IndiaServices() {
               {
                 step: "2",
                 title: "Review & Preparation",
-                desc: "We perform legal due diligence, prepare drafts, and share updates for your approval.",
+                desc: "We perform document due diligence, prepare drafts, and share updates for your approval.",
               },
               {
                 step: "3",
@@ -187,7 +259,7 @@ export default function IndiaServices() {
           </h2>
           <div className="max-w-[800px] mx-auto text-neutral-600 mb-10">
             <p>
-              With over a decade of hands-on experience in property and legal
+              With over a decade of hands-on experience in property and
               documentation, our India-focused team ensures every client enjoys
               smooth, compliant transactions.
             </p>
@@ -196,10 +268,10 @@ export default function IndiaServices() {
             {[
               "Quick turnaround time",
               "Trusted by 2500+ clients",
-              "Pan-India legal support",
+              "Pan-India support",
               "End-to-end documentation services",
               "Transparent pricing structure",
-              "Dedicated legal support team",
+              "Dedicated support team",
             ].map((point, i) => (
               <div key={i} className="flex items-center justify-center gap-3">
                 <CheckCircle className="text-[#d4a373] w-5 h-5" />

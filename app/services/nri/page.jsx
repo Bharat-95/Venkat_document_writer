@@ -212,11 +212,6 @@ export default function NriServices() {
         </div>
       </section>
 
-      <PracticeAreas />
-
-      <FounderSection />
-
-      <TestimonialsCarousel />
 
       <section className="bg-white py-16">
         <div className="max-w-[900px] mx-auto px-6 text-center">

@@ -32,63 +32,61 @@ export default function AboutPage() {
   return (
     <main className="overflow-hidden">
       {/* Primary About Section */}
-      <AboutSection />
 
-      {/* Services overview (reworded to remove 'legal' claims) */}
-      <section className="bg-white text-[#0b0b09] py-20 lg:py-28">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+       {/* Founder */}
+      <section ref={founderRef}>
+        <FounderSection />
+      </section>
+    
+
+    <section className="bg-[#0b0b09] text-white py-20 lg:py-28">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">
-              TRUSTED DOCUMENTATION & REGISTRATION SUPPORT
+              HOW WE WORK
             </p>
             <h2
-              className="font-playfair text-4xl md:text-5xl mt-3 font-semibold text-[#0b0b09]"
+              className="font-playfair text-4xl md:text-5xl mt-3 font-semibold"
+              style={{
+                background: `linear-gradient(90deg, ${GOLD_FROM}, ${GOLD_VIA}, ${GOLD_TO})`,
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
             >
-              NRI Property Documentation & Registration Services
+              Simple, Transparent & Secure Process
             </h2>
-            <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
-              We specialise in document writing, Power of Attorney (POA) facilitation, embassy attestation,
-              and end-to-end support for property registration matters for NRIs. Our team handles paperwork,
-              coordination and local registration logistics so you don't have to.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
-                title: "Expert Document Writing",
-                desc: "Drafting clear, accurate documents such as POAs, sale deeds, and agreements tailored for NRI requirements.",
+                step: "1",
+                title: "Document Submission",
+                desc: "Share your basic property or ownership documents for preliminary verification.",
               },
               {
-                title: "POA Facilitation & Attestation",
-                desc: "Guidance on execution, notarisation, embassy/consulate attestation and return shipment to India.",
+                step: "2",
+                title: "Review & Preparation",
+                desc: "We perform legal due diligence, prepare drafts, and share updates for your approval.",
               },
               {
-                title: "Sale Deed Preparation",
-                desc: "Preparing sale deed drafts that reflect the transaction terms and are ready for local registration.",
+                step: "3",
+                title: "Execution & Handover",
+                desc: "We assist with registration, attestation, and provide copies of finalized documents.",
               },
-              {
-                title: "Registrar Coordination",
-                desc: "We liaise with the local Registrar’s office to generate and resolve transaction queries and ensure smooth processing.",
-              },
-              {
-                title: "Stamp Duty & Valuation Guidance",
-                desc: "Help with stamp duty calculations and property valuation coordination needed for registration.",
-              },
-              {
-                title: "End-to-End Registration Support",
-                desc: "From documents to final registration, we provide practical assistance at each step — including handover to the Registrar office.",
-              },
-            ].map((item, idx) => (
+            ].map((step, idx) => (
               <div
                 key={idx}
-                className="p-8 border border-[#eee] rounded-2xl bg-white shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all"
+                className="p-8 rounded-2xl border border-[#1a1a1a] bg-[#11110e] text-center hover:shadow-md transition-all"
               >
-                <h3 className="text-lg font-semibold text-[#0b0b09] mb-3">
-                  {item.title}
+                <div className="text-5xl font-bold text-[#d4a373] mb-4">
+                  {step.step}
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-white">
+                  {step.title}
                 </h3>
-                <p className="text-neutral-600 text-[15px] leading-relaxed">
-                  {item.desc}
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  {step.desc}
                 </p>
               </div>
             ))}
@@ -178,15 +176,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder */}
-      <section ref={founderRef}>
-        <FounderSection />
-      </section>
+     
 
-      {/* Testimonials */}
-      <section>
-        <TestimonialsCarousel />
-      </section>
 
       {/* CTA */}
       <section className="bg-[#0b0b09] py-20 text-center">

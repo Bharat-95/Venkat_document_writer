@@ -128,9 +128,7 @@ export default function Footer() {
           <span className="text-[#d4a373] font-medium">P Venkat Rao Legal Associates</span>{" "}
           — All Rights Reserved.
         </p>
-        <p className="text-neutral-600 text-[13px] mt-2">
-          Designed with precision • Crafted for clarity • Built on trust by <Link href='https://www.nandak.co' target="_blank">Nandak Innovations Private Limited</Link>
-        </p>
+       
       </div>
 
       <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#d4a373]/10 blur-3xl rounded-full opacity-70"></div>
