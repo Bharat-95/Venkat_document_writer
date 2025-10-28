@@ -67,43 +67,43 @@ export default function NriServices() {
 
   const workflowSteps = [
     {
-      step: "01 - Consultation",
+      step: " Consultation",
       text: "Expert legal advice on property registration process and Power of Attorney requirements for NRIs.",
     },
     {
-      step: "02 - Document Submission",
+      step: "Document Submission",
       text: "Submit identity, ownership, and transaction-related documents for legal verification and processing.",
     },
     {
-      step: "03 - Preparing POA",
+      step: "Preparing POA",
       text: "Drafting Power of Attorney tailored to NRI's property needs and legal compliance.",
     },
     {
-      step: "04 - Execution of POA at Foreign Country",
+      step: "Execution of POA at Foreign Country",
       text: "Sign POA before Notary or Consulate as per Indian legal standards.",
     },
     {
-      step: "05 - Send POA through Indian Embassy",
+      step: "Send POA through Indian Embassy",
       text: "Attested POA sent to India via Embassy/Consulate for local use and validation.",
     },
     {
-      step: "06 - Preparing Sale Deed",
+      step: " Preparing Sale Deed",
       text: "Drafting detailed sale deed ensuring clear title, terms, and legal compliance.",
     },
     {
-      step: "07 - Property Valuation",
+      step: " Property Valuation",
       text: "Assess fair market value of property for stamp duty and legal documentation.",
     },
     {
-      step: "08 - Query Generation",
+      step: " Query Generation",
       text: "Initiate process with Registrar’s office for official property transaction queries.",
     },
     {
-      step: "09 - Stamp Duty Payment",
+      step: " Stamp Duty Payment",
       text: "Calculate and arrange stamp duty payment as per state rules; reconcile documents for registration.",
     },
     {
-      step: "10 - Deed Registration",
+      step: "Deed Registration",
       text: "Register sale deed at local Registrar office using POA on behalf of NRI and hand over verified copies.",
     },
   ];
@@ -129,7 +129,7 @@ export default function NriServices() {
               color: "transparent",
             }}
           >
-            NRI Property & Real Estate Legal Services
+            NRI Documentation Services
           </h1>
           <p className="text-neutral-300 max-w-2xl text-lg">
             Complete end-to-end support for NRIs: POA drafting and execution abroad, embassy attestation, remote sale deed preparation and registration through authorised representatives.
@@ -184,54 +184,56 @@ export default function NriServices() {
       </section>
 
       {/* WORKFLOW - each row slides from alternate sides */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
-          <motion.div
-            className="text-center mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.25 }}
-            transition={{ duration: 1.4 }}
-            variants={fadeRight}
-          >
-            <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">Step-by-step Workflow</p>
-            <h2 className="font-playfair text-3xl md:text-4xl mt-3 font-semibold">NRI Property Registration via Power of Attorney</h2>
-            <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
-              Clear stages and what to expect at each step — designed for NRIs who need dependable remote support.
-            </p>
-          </motion.div>
+     <section className="py-20 lg:py-28 bg-white">
+  <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
+    {/* Section Header */}
+    <motion.div
+      className="text-center mb-16"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.25 }}
+      transition={{ duration: 1.4 }}
+      variants={fadeRight}
+    >
+      <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">
+        Step-by-step Workflow
+      </p>
+      <h2 className="font-playfair text-3xl md:text-4xl mt-3 font-semibold">
+        NRI Property Registration via Power of Attorney
+      </h2>
+      <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
+        Clear stages and what to expect at each step — designed for NRIs who need dependable remote support.
+      </p>
+    </motion.div>
 
-          <div className="space-y-6">
-            {workflowSteps.map((w, i) => (
-              <motion.div
-                key={i}
-                className="p-6 rounded-xl border border-[#eee] bg-white shadow-sm flex gap-6 items-start"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.18 }}
-                transition={{ duration: 1.35, delay: i * 0.08 }}
-                variants={i % 2 === 0 ? fadeLeft : fadeRight}
-              >
-                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#f7f2e6] text-[#b8962e] font-semibold text-lg">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-1">{w.step}</h4>
-                  <p className="text-neutral-600">{w.text}</p>
-                </div>
-              </motion.div>
-            ))}
+    {/* Steps Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {workflowSteps.map((w, i) => (
+        <motion.div
+          key={i}
+          className="p-6 rounded-xl border border-[#eee] bg-white shadow-sm flex gap-6 items-start hover:shadow-md transition-all duration-300"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 1, delay: i * 0.07 }}
+          variants={i % 2 === 0 ? fadeLeft : fadeRight}
+        >
+          {/* Step Number */}
+          <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#f7f2e6] text-[#b8962e] font-semibold text-lg flex-shrink-0">
+            {String(i + 1).padStart(2, "0")}
           </div>
 
-          <div className="mt-8 text-sm text-neutral-500">
-            <p className="mb-2">Additional considerations:</p>
-            <ul className="list-disc list-inside text-neutral-500">
-              <li>Development agreements and special builder executions may require personal appearance abroad or specific embassy processes.</li>
-              <li>In cases where property owners must execute documents abroad, we provide detailed guidance and local embassy liaison support.</li>
-            </ul>
+          {/* Step Content */}
+          <div>
+            <h4 className="text-lg font-semibold mb-1">{w.step}</h4>
+            <p className="text-neutral-600 leading-relaxed">{w.text}</p>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* WHY CHOOSE US - slide up and slight scale */}
       <motion.section

@@ -50,12 +50,18 @@ export default function IndiaServices() {
 
   // Services list animations
   const servicesRef = useRef(null);
-  const servicesInView = useInView(servicesRef, { threshold: 0.18, once: false });
+  const servicesInView = useInView(servicesRef, {
+    threshold: 0.18,
+    once: false,
+  });
   const servicesControls = useAnimation();
 
   // Right panel cards (list) animations
   const rightListRef = useRef(null);
-  const rightListInView = useInView(rightListRef, { threshold: 0.18, once: false });
+  const rightListInView = useInView(rightListRef, {
+    threshold: 0.18,
+    once: false,
+  });
   const rightListControls = useAnimation();
 
   // How we work animations
@@ -102,22 +108,41 @@ export default function IndiaServices() {
   };
   const heroTitle = {
     hidden: { opacity: 0, y: 18, scale: 0.995 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.9, ease: "easeOut" },
+    },
   };
   const heroText = {
     hidden: { opacity: 0, x: -28 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] },
+    },
   };
   const heroCTA = {
     hidden: { opacity: 0, y: 12, scale: 0.98 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
     hover: { scale: 1.03 },
   };
 
   // Services left panel: depth slide in
   const leftPanel = {
     hidden: { opacity: 0, x: -28, scale: 0.995 },
-    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 1.05, ease: [0.22, 1, 0.36, 1] } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: { duration: 1.05, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   // Services list items: staggered card rise (different animation)
@@ -152,7 +177,12 @@ export default function IndiaServices() {
       scale: 1,
       transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 },
     }),
-    hover: { y: -8, rotate: [0, -1.5, 1.5, 0], scale: 1.02, transition: { duration: 0.45 } },
+    hover: {
+      y: -8,
+      rotate: [0, -1.5, 1.5, 0],
+      scale: 1.02,
+      transition: { duration: 0.45 },
+    },
   };
 
   // Why choose: staggered flip-in
@@ -173,7 +203,12 @@ export default function IndiaServices() {
       <section className="relative bg-[#0b0b09] text-white py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/30 via-[#0b0b09] to-[#0b0b09] opacity-90" />
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
-          <motion.div ref={heroRef} variants={heroContainer} initial="hidden" animate={heroControls}>
+          <motion.div
+            ref={heroRef}
+            variants={heroContainer}
+            initial="hidden"
+            animate={heroControls}
+          >
             <motion.h1
               variants={heroTitle}
               className="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-4"
@@ -183,10 +218,13 @@ export default function IndiaServices() {
                 color: "transparent",
               }}
             >
-              India Property Documentation Services
+              India Documentation Services
             </motion.h1>
 
-            <motion.p variants={heroText} className="text-neutral-300 max-w-2xl text-lg">
+            <motion.p
+              variants={heroText}
+              className="text-neutral-300 max-w-2xl text-lg"
+            >
               We specialize in end-to-end document drafting and registration
               support for property transactions across India. From Sale Deeds to
               Title Verification — we ensure accuracy, compliance, and peace of
@@ -194,7 +232,11 @@ export default function IndiaServices() {
             </motion.p>
 
             <div className="mt-8">
-              <motion.div variants={heroCTA} whileHover="hover" className="inline-block">
+              <motion.div
+                variants={heroCTA}
+                whileHover="hover"
+                className="inline-block"
+              >
                 <Link
                   href="/contact"
                   className="inline-block bg-[#d4a373] text-[#0b0b09] font-medium px-8 py-3 rounded-full hover:bg-[#c18c59] transition-all shadow-md hover:shadow-lg"
@@ -212,7 +254,9 @@ export default function IndiaServices() {
         {/* Top white background area for title */}
         <div className="bg-white py-16">
           <div className="max-w-[1300px] mx-auto px-6 lg:px-12 text-center">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">OUR SERVICES</p>
+            <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">
+              OUR SERVICES
+            </p>
             <h2 className="font-playfair text-4xl md:text-5xl mt-3 font-semibold">
               Comprehensive Documentation Support in India
             </h2>
@@ -227,13 +271,16 @@ export default function IndiaServices() {
         {/* Split background starts here (Black 70% | White 30%) */}
         <div className="relative py-10">
           {/* Split background */}
-          <div className="absolute inset-0 flex pointer-events-none" aria-hidden="true">
-            <div className="w-[70%] bg-[#0b0b09]" />
-            <div className="w-[30%] bg-[#fafafa]" />
+          <div
+            className="absolute inset-0 flex pointer-events-none"
+            aria-hidden="true"
+          >
+            <div className="w-[65%] bg-[#0b0b09]" />
+            <div className="w-[35%] bg-[#fafafa]" />
           </div>
 
           {/* Foreground content */}
-          <div className="relative z-10   flex flex-col lg:flex-row gap-10 items-start max-w-[1300px] mx-auto px-6 lg:px-12">
+          <div className="relative z-10   flex flex-col lg:flex-row gap-10 items-start max-w-[1300px] mx-auto">
             {/* LEFT: Black panel */}
             <motion.div
               ref={servicesRef}
@@ -242,91 +289,111 @@ export default function IndiaServices() {
               animate={servicesControls}
               className="flex-1 bg-[#0b0b09] text-white rounded-2xl p-10 shadow-md"
             >
-              <h3 className="text-3xl font-semibold mb-6">Secure Your Real Estate Investments</h3>
+              <h3 className="text-3xl font-semibold mb-6">
+                Professional Document Writing Services
+              </h3>
 
               <p className="text-neutral-300 leading-relaxed mb-4">
-                At P Venkat Rao, we offer comprehensive property documentation services in Kolkata, specializing in sale deed drafting, property title verification, and seamless registration with the Sub-Registrar Office. Our expert team ensures proper compliance for all real estate transactions, making us the preferred choice for Indians, NRIs, First-Time Property Buyers, and property investors.
+                At P Venkat Rao Associates, we provide accurate,
+                well-structured, and professionally typed documents for all your
+                personal and business requirements. Our experienced team ensures
+                every document is prepared clearly, formatted properly, and
+                ready for official submission.
               </p>
 
               <p className="text-neutral-300 leading-relaxed mb-4">
-                We provide end-to-end solutions that protect your property rights and ensure smooth ownership transfer. From document preparation to sale deed registration and title clearance, we guide you through each step with transparent, reliable, and efficient support.
+                We specialize in preparing affidavits, declarations, agreements,
+                consent letters, partnership deeds, authorization letters, and
+                other essential documents with precision and attention to
+                detail. Every draft is created to maintain clarity and
+                consistency.
               </p>
 
               <p className="text-neutral-300 leading-relaxed">
-                Whether you're purchasing residential or commercial property, P Venkat Rao helps you navigate the complexities of property registration, offering hassle-free services with guaranteed protection.
+                Whether you need a simple declaration or a detailed agreement, P
+                Venkat Rao Associates offers fast, dependable, and affordable
+                document writing services designed to make your paperwork easy
+                and worry-free.
               </p>
             </motion.div>
 
-            <div className="flex-1 relative">
-              <div className="relative rounded-2xl overflow-hidden h-[600px]">
-                <div
-                  ref={rightListRef}
-                  className="relative z-10 p-6 h-full overflow-y-auto scroll-smooth space-y-8 pr-4"
-                >
-                  {keyServices.map((service, idx) => (
-                    <motion.div
-                      key={idx}
-                      custom={idx}
-                      variants={serviceItem}
-                      initial="hidden"
-                      animate={rightListControls}
-                      className="relative flex items-start"
-                      style={{ willChange: "transform, opacity" }}
-                    >
-                      <motion.div
-                        className="absolute top-10 flex items-center justify-center z-50"
-                        style={{
-                          transform: "translateX(-25%)",
-                          width: "60px",
-                          height: "60px",
-                        }}
-                        custom={idx}
-                        variants={ring}
-                        initial="hidden"
-                        animate={rightListControls}
-                      >
-                        <div className="relative w-full h-full rounded-full bg-white flex items-center justify-center shadow-md">
-                          {/* rotating ring */}
-                          <svg className="absolute w-full h-full animate-spin-slow" viewBox="0 0 100 100">
-                            <path
-                              d="M50 10
-           A40 40 0 0 1 50 90"
-                              stroke="#bcbcbc"
-                              strokeWidth="3"
-                              fill="none"
-                            />
+           <div className="flex-1 relative">
+  <div className="relative rounded-2xl overflow-hidden h-[600px]">
+    <div
+      ref={rightListRef}
+      className="relative z-10 p-6 h-full overflow-y-auto scroll-smooth space-y-8 pr-4 scrollbar-hide"
+    >
+      {keyServices.map((service, idx) => (
+        <motion.div
+          key={idx}
+          custom={idx}
+          variants={serviceItem}
+          initial="hidden"
+          animate={rightListControls}
+          className="relative flex items-start"
+          style={{ willChange: "transform, opacity" }}
+        >
+          <motion.div
+            className="absolute top-10 flex items-center justify-center z-50"
+            style={{
+              transform: "translateX(-25%)",
+              width: "60px",
+              height: "60px",
+            }}
+            custom={idx}
+            variants={ring}
+            initial="hidden"
+            animate={rightListControls}
+          >
+            <div className="relative w-full h-full rounded-full bg-white flex items-center justify-center shadow-md">
+              {/* rotating ring */}
+              <svg
+                className="absolute w-full h-full animate-spin-slow"
+                viewBox="0 0 100 100"
+              >
+                <path
+                  d="M50 10 A40 40 0 0 1 50 90"
+                  stroke="#bcbcbc"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                <path
+                  d="M50 10 A40 40 0 0 0 50 90"
+                  stroke="#bcbcbc"
+                  strokeWidth="3"
+                  strokeDasharray="4 6"
+                  fill="none"
+                />
+              </svg>
 
-                            <path
-                              d="M50 10
-           A40 40 0 0 0 50 90"
-                              stroke="#bcbcbc"
-                              strokeWidth="3"
-                              strokeDasharray="4 6"
-                              fill="none"
-                            />
-                          </svg>
-
-                          {/* Number inside */}
-                          <span className="text-[#0b0b09] font-semibold text-lg relative z-10">{idx + 1}</span>
-                        </div>
-                      </motion.div>
-
-                      {/* White card */}
-                      <div className="bg-white rounded-2xl p-6 border border-[#eaeaea] shadow-[0_4px_10px_rgba(0,0,0,0.06)] transition-transform hover:shadow-[0_6px_14px_rgba(0,0,0,0.08)] ml-6">
-                        <h4 className="text-lg font-semibold text-[#0b0b09] mb-2">{service.title}</h4>
-                        <p className="text-neutral-600 text-sm leading-relaxed">{service.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+              {/* Number inside */}
+              <span className="text-[#0b0b09] font-semibold text-lg relative z-10">
+                {idx + 1}
+              </span>
             </div>
+          </motion.div>
+
+          {/* White card */}
+          <div className="bg-white rounded-2xl py-6 px-12 border border-[#eaeaea] shadow-[0_4px_10px_rgba(0,0,0,0.06)] transition-transform hover:shadow-[0_6px_14px_rgba(0,0,0,0.08)] ml-6">
+            <h4 className="text-lg font-semibold text-[#0b0b09] mb-2">
+              {service.title}
+            </h4>
+            <p className="text-neutral-600 text-sm leading-relaxed">
+              {service.desc}
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
       </section>
 
       {/* How We Work Section */}
-      <section className="bg-[#0b0b09] text-white py-20 lg:py-28">
+      {/*<section className="bg-[#0b0b09] text-white py-20 lg:py-28">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">HOW WE WORK</p>
@@ -377,7 +444,7 @@ export default function IndiaServices() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Why Choose Section */}
       <section className="bg-white py-20">
@@ -400,7 +467,10 @@ export default function IndiaServices() {
             </p>
           </div>
 
-          <div ref={whyRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            ref={whyRef}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {[
               "Quick turnaround time",
               "Trusted by 2500+ clients",

@@ -121,7 +121,7 @@ const AboutSection = () => {
           </ul>
 
           <Link
-            href="/about"
+            href="/services/nri"
             className="bg-[#d4a373] text-[#0b0b09] px-8 py-3 rounded-full text-sm font-medium hover:bg-[#c3925f] transition-colors"
           >
             Learn More

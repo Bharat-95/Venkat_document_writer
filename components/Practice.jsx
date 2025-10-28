@@ -39,48 +39,37 @@ const PracticeAreas = () => {
     },
   ];
 
-  // refs + controls for framer-motion
+  // left panel controls
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { threshold: 0.25 }); // not once: true
+  const inView = useInView(sectionRef, { threshold: 0.25 });
   const leftControls = useAnimation();
-  const itemsControls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      leftControls.start("visible");
-      itemsControls.start("visible");
-    } else {
-      // Reset when scrolled out, so it animates again next time
-      leftControls.start("hidden");
-      itemsControls.start("hidden");
-    }
-  }, [inView, leftControls, itemsControls]);
+    if (inView) leftControls.start("visible");
+    else leftControls.start("hidden");
+  }, [inView, leftControls]);
 
   const leftVariant = {
     hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  const listVariant = {
-    visible: {
+  // per-tile animation: pop + rotate + fade (gives a distinct non-slide feel)
+  const tileVariant = {
+    hidden: { opacity: 0, scale: 0.96, rotateX: -12, rotate: -4 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      scale: 1,
+      rotateX: 0,
+      rotate: 0,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.15,
+        type: "spring",
+        stiffness: 260,
+        damping: 28,
+        mass: 0.6,
+        delay: i * 0.06 + 0.08,
       },
-    },
-  };
-
-  const itemVariant = {
-    hidden: { opacity: 0, y: 18 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.45, ease: "easeOut" },
-    },
+    }),
   };
 
   return (
@@ -108,20 +97,23 @@ const PracticeAreas = () => {
 
         {/* Right Grid */}
         <div className="px-8 md:px-12 py-16 lg:py-24">
-          <motion.div
-            className="max-w-[800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12"
-            initial="hidden"
-            animate={itemsControls}
-            variants={listVariant}
-          >
+          <div className="max-w-[800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
             {areas.map((area, index) => (
               <motion.div
                 key={index}
-                className="flex items-start gap-4"
-                variants={itemVariant}
+                className="flex items-start gap-4 transform-preserve-3d"
+                variants={tileVariant}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.25 }}
+                // hover: small rotate + lift + deeper 3D feel
+                whileHover={{ y: -6, rotate: 1.5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                style={{ perspective: 800 }}
               >
                 <div className="w-3 h-3 bg-[#b8962e] mt-1 rounded-sm flex-shrink-0"></div>
-                <div>
+                <div className="bg-white rounded-md p-3 md:p-4 shadow-sm">
                   <h4 className="text-lg font-semibold text-[#0b0b09] tracking-wide">
                     {area.title}
                   </h4>
@@ -131,7 +123,7 @@ const PracticeAreas = () => {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

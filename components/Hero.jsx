@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroSection() {
   const images = ["/Hero.jpg", "/Hero1.jpg", "/Hero2.jpg"];
@@ -92,18 +93,18 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <a
-              href="#services"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-3 bg-[#f5e7c5] text-[#0b0b09] px-6 py-3 rounded-md font-semibold shadow hover:scale-[1.01] transition"
             >
               Get Started
-            </a>
-            <a
-              href="#how-it-works"
+            </Link>
+            <Link
+              href="/about"
               className="inline-flex items-center gap-2 border border-white/20 px-5 py-3 rounded-md text-sm hover:bg-white/5 transition"
             >
               How it works
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">

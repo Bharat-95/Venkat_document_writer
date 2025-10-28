@@ -128,8 +128,11 @@ export default function TestimonialsCarousel() {
   const [visible, setVisible] = useState(3);
   const [index, setIndex] = useState(0);
   const [transitionOn, setTransitionOn] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState(null); // index in slides array
   const containerRef = useRef(null);
+  const timerRef = useRef(null);
 
+  // Update "visible" based on breakpoint
   useEffect(() => {
     const updateVisible = () => {
       if (window.innerWidth < 768) setVisible(1);
@@ -141,21 +144,42 @@ export default function TestimonialsCarousel() {
     return () => window.removeEventListener("resize", updateVisible);
   }, []);
 
+  // build slides with clones for smooth looping
   const slides = [...TESTIMONIALS, ...TESTIMONIALS.slice(0, visible)];
+  const slidesCount = slides.length;
+  const containerWidthPercent = (slidesCount * 100) / visible;
+  const itemWidthPercent = 100 / slidesCount;
+  const translatePercent = -(index * itemWidthPercent);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  // autoplay helpers
+  const clearAutoplay = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+  const startAutoplay = () => {
+    clearAutoplay();
+    timerRef.current = setInterval(() => {
       setIndex((prev) => prev + 1);
       setTransitionOn(true);
     }, AUTOPLAY_MS);
-    return () => clearInterval(timer);
+  };
+
+  // start autoplay and restart on visible change
+  useEffect(() => {
+    startAutoplay();
+    return () => clearAutoplay();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
+  // handle loop reset when transition ends
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const onEnd = () => {
       if (index >= TESTIMONIALS.length) {
+        // jump back to start without transition
         setTransitionOn(false);
         setIndex(0);
       }
@@ -164,6 +188,7 @@ export default function TestimonialsCarousel() {
     return () => el.removeEventListener("transitionend", onEnd);
   }, [index, visible]);
 
+  // re-enable transition after a quick timeout when looped
   useEffect(() => {
     if (!transitionOn) {
       const t = setTimeout(() => setTransitionOn(true), 40);
@@ -171,10 +196,24 @@ export default function TestimonialsCarousel() {
     }
   }, [transitionOn]);
 
-  const slidesCount = slides.length;
-  const containerWidthPercent = (slidesCount * 100) / visible;
-  const itemWidthPercent = 100 / slidesCount;
-  const translatePercent = -(index * itemWidthPercent);
+  // Hover / focus handlers: pause autoplay and highlight the hovered card
+  const handleMouseEnter = (slideIdx) => {
+    setHoveredIndex(slideIdx);
+    setTransitionOn(false); // freeze transform while hovered
+    clearAutoplay(); // stop timer
+  };
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+    setTransitionOn(true);
+    // delay to avoid abrupt resume
+    setTimeout(() => {
+      if (!timerRef.current) startAutoplay();
+    }, 120);
+  };
+
+  // Keyboard accessibility: focus behaves like hover
+  const handleFocus = (slideIdx) => handleMouseEnter(slideIdx);
+  const handleBlur = () => handleMouseLeave();
 
   return (
     <section className="w-full bg-[#0b0b09] text-white py-20 border-t border-[#1a1a1a]">
@@ -192,22 +231,35 @@ export default function TestimonialsCarousel() {
             transition: transitionOn ? `transform ${TRANSITION_MS}ms ease` : "none",
           }}
         >
-          {slides.map((s, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 flex flex-col justify-center items-center text-center px-10 py-14 min-h-[360px] border-r border-border-white/50 bg-[#11110e] hover:bg-[#151412] transition-all duration-300"
-              style={{ width: `${100 / slidesCount}%` }}
-            >
-              <blockquote className="text-[18px] md:text-[20px] leading-relaxed text-neutral-200 italic mb-8">
-                “{s.text}”
-              </blockquote>
-              <p className="text-sm font-medium text-[#d4a373]">{s.name}</p>
-            </div>
-          ))}
+          {slides.map((s, i) => {
+            const isHovered = hoveredIndex === i;
+            return (
+              <div
+                key={i}
+                role="button"
+                tabIndex={0}
+                onMouseEnter={() => handleMouseEnter(i)}
+                onMouseLeave={handleMouseLeave}
+                onFocus={() => handleFocus(i)}
+                onBlur={handleBlur}
+                className={`flex-shrink-0 flex flex-col justify-center items-center text-center px-10 py-14 min-h-[360px] border-r border-white/10 bg-[#11110e] transition-all duration-300`}
+                style={{
+                  width: `${100 / slidesCount}%`,
+                  transform: isHovered ? "scale(1.06) translateY(-6px)" : undefined,
+                  zIndex: isHovered ? 40 : 10,
+                  boxShadow: isHovered ? "0 18px 40px rgba(0,0,0,0.55)" : undefined,
+                  transformOrigin: "center center",
+                }}
+              >
+                <blockquote className="text-[18px] md:text-[20px] leading-relaxed text-neutral-200 italic mb-8">
+                  “{s.text}”
+                </blockquote>
+                <p className="text-sm font-medium text-[#d4a373]">{s.name}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
-
-      
     </section>
   );
 }

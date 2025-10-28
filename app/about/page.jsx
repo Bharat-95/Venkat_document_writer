@@ -305,7 +305,7 @@ export default function AboutPage() {
       </motion.section>
 
       {/* WORKFLOW — SVG draw + items slide/fade (timed so animation is visible) */}
-      <motion.section
+     {/*} <motion.section
         ref={workflowRef}
         initial="hidden"
         animate={workflowControls}
@@ -370,6 +370,7 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
+      */}
 
       {/* MISSION & PURPOSE — 3D rotateY entrance + hover depth */}
       <motion.section

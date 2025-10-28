@@ -204,21 +204,31 @@ export default function ContactPage() {
                 Sony Complex, 20, TGIIC Rd, Prashant Nagar, IDA Kukatpally,
                 Hyderabad, Telangana 500037
               </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Sony+Complex%2C+Kukatpally%2C+Hyderabad"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-full text-sm border border-[#b8962e] text-[#b8962e] hover:bg-[#b8962e] hover:text-[#0b0b09] transition-all"
-                >
-                  Open in Google Maps
-                </a>
-                <a
-                  href="tel:+919347031611"
-                  className="px-4 py-2 rounded-full text-sm border border-[#b8962e] text-[#b8962e] hover:bg-[#b8962e] hover:text-[#0b0b09] transition-all"
-                >
-                  Call Now
-                </a>
+
+              {/* Embedded responsive Google Map */}
+              <div className="mt-4">
+                <div className="w-full h-56 md:h-64 rounded-lg overflow-hidden border border-[#eaeaea]">
+                  <iframe
+                    title="P Venkat Rao Associates - Sony Complex, Kukatpally"
+                    src={`https://www.google.com/maps?q=Sony+Complex,+Kukatpally,+Hyderabad&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+
+                {/* Call button below the map */}
+                <div className="mt-4 flex gap-3">
+                  <a
+                    href="tel:+919347031611"
+                    className="px-4 py-2 rounded-full text-sm border border-[#b8962e] text-[#b8962e] hover:bg-[#b8962e] hover:text-[#0b0b09] transition-all"
+                  >
+                    Call Now
+                  </a>
+                </div>
               </div>
             </motion.div>
 
@@ -256,7 +266,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* CTA Banner */}
       
     </main>
   );
