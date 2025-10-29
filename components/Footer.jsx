@@ -26,9 +26,7 @@ export default function Footer() {
             P Venkat Rao
           </h3>
           <p className="text-neutral-400 text-[15px] leading-relaxed mb-6">
-            Simplifying property and NRI legal processes with expertise,
-            precision, and trust. Dedicated to providing transparent legal
-            solutions for every client.
+           Simplifying Documentation processes with expertise, precision, and trust. Dedicated to providing transparent document writing services for every client.
           </p>
           <Link
             href="/contact"
@@ -43,18 +41,26 @@ export default function Footer() {
             Explore
           </h4>
           <ul className="space-y-3 text-[15px] text-neutral-400">
-            {["Home", "About", "Services", "Contact"].map((item) => (
-              <li key={item}>
-                <Link
-                  href={`/${item === "Home" ? "" : item.toLowerCase()}`}
-                  className="relative group inline-block hover:text-[#d4a373] transition-all duration-300"
-                >
-                  {item}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4a373] group-hover:w-full transition-all duration-300"></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+  {[
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services/india" },
+    { label: "Contact", href: "/contact" },
+    // you can add more like:
+    // { label: "Blog", href: "/blog" },
+  ].map(({ label, href }) => (
+    <li key={label}>
+      <Link
+        href={href}
+        className="relative group inline-block hover:text-[#d4a373] transition-all duration-300"
+      >
+        {label}
+        <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4a373] group-hover:w-full transition-all duration-300"></span>
+      </Link>
+    </li>
+  ))}
+</ul>
+
         </div>
 
         <div>
