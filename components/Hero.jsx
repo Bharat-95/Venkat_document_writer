@@ -83,7 +83,7 @@ export default function HeroSection() {
             <h1 className="font-playfair text-5xl md:text-6xl leading-tight tracking-tight mb-4">
               Your Trusted
               <br />
-              Property Documentation Experts
+               Documentation Experts
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl">
               Expert guidance in property documentation, Power of Attorney
@@ -125,20 +125,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mt-2">
-            <div className="text-xs text-gray-400">As seen in</div>
-            <div className="flex gap-4 items-center">
-              <div className="h-8 w-24 bg-white/10 rounded flex items-center justify-center text-xs text-gray-200">
-                The Ledger
-              </div>
-              <div className="h-8 w-24 bg-white/10 rounded flex items-center justify-center text-xs text-gray-200">
-                Global Estates
-              </div>
-              <div className="h-8 w-24 bg-white/10 rounded flex items-center justify-center text-xs text-gray-200">
-                NRI Times
-              </div>
-            </div>
-          </div>
+          
         </motion.div>
 
         {/* RIGHT: carousel — animated on scroll via Framer Motion */}

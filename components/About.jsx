@@ -26,30 +26,32 @@ const AboutSection = () => {
   }, [inView, leftControls, rightControls, badgeControls]);
 
   const leftVariant = {
-    hidden: { opacity: 0, x: -24 },
+    hidden: { opacity: 0, x: -120, scale: 0.995 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.55, ease: "easeOut" },
+      scale: 1,
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
   const rightVariant = {
-    hidden: { opacity: 0, x: 24 },
+    hidden: { opacity: 0, x: 120, scale: 0.995 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: "easeOut", delay: 0.08 },
+      scale: 1,
+      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
     },
   };
 
   const badgeVariant = {
-    hidden: { opacity: 0, scale: 0.9, y: 10 },
+    hidden: { opacity: 0, scale: 0.85, y: 18 },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: { duration: 0.45, ease: "easeOut", delay: 0.14 },
+      transition: { duration: 0.45, ease: "easeOut", delay: 0.18 },
     },
   };
 

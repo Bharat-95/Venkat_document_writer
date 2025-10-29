@@ -218,17 +218,16 @@ export default function IndiaServices() {
                 color: "transparent",
               }}
             >
-              India Documentation Services
+              Documentation Services
             </motion.h1>
 
             <motion.p
               variants={heroText}
               className="text-neutral-300 max-w-2xl text-lg"
             >
-              We specialize in end-to-end document drafting and registration
-              support for property transactions across India. From Sale Deeds to
-              Title Verification — we ensure accuracy, compliance, and peace of
-              mind.
+              We specialize in end-to-end document drafting, legal agreements,
+              and registration support across India — ensuring precision,
+              compliance, and complete peace of mind.
             </motion.p>
 
             <div className="mt-8">
@@ -251,25 +250,9 @@ export default function IndiaServices() {
 
       {/* Comprehensive Documentation Support in India Section */}
       <section className="relative">
-        {/* Top white background area for title */}
-        <div className="bg-white py-16">
-          <div className="max-w-[1300px] mx-auto px-6 lg:px-12 text-center">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#d4a373]">
-              OUR SERVICES
-            </p>
-            <h2 className="font-playfair text-4xl md:text-5xl mt-3 font-semibold">
-              Comprehensive Documentation Support in India
-            </h2>
-            <p className="mt-4 text-neutral-600 max-w-2xl mx-auto">
-              Whether you’re purchasing, gifting, or registering property, our
-              team manages the complete process — from verification to
-              registration.
-            </p>
-          </div>
-        </div>
-
+       
         {/* Split background starts here (Black 70% | White 30%) */}
-        <div className="relative py-10">
+        <div className="relative py-20">
           {/* Split background */}
           <div
             className="absolute inset-0 flex pointer-events-none"
@@ -317,77 +300,76 @@ export default function IndiaServices() {
               </p>
             </motion.div>
 
-           <div className="flex-1 relative">
-  <div className="relative rounded-2xl overflow-hidden h-[600px]">
-    <div
-      ref={rightListRef}
-      className="relative z-10 p-6 h-full overflow-y-auto scroll-smooth space-y-8 pr-4 scrollbar-hide"
-    >
-      {keyServices.map((service, idx) => (
-        <motion.div
-          key={idx}
-          custom={idx}
-          variants={serviceItem}
-          initial="hidden"
-          animate={rightListControls}
-          className="relative flex items-start"
-          style={{ willChange: "transform, opacity" }}
-        >
-          <motion.div
-            className="absolute top-10 flex items-center justify-center z-50"
-            style={{
-              transform: "translateX(-25%)",
-              width: "60px",
-              height: "60px",
-            }}
-            custom={idx}
-            variants={ring}
-            initial="hidden"
-            animate={rightListControls}
-          >
-            <div className="relative w-full h-full rounded-full bg-white flex items-center justify-center shadow-md">
-              {/* rotating ring */}
-              <svg
-                className="absolute w-full h-full animate-spin-slow"
-                viewBox="0 0 100 100"
-              >
-                <path
-                  d="M50 10 A40 40 0 0 1 50 90"
-                  stroke="#bcbcbc"
-                  strokeWidth="3"
-                  fill="none"
-                />
-                <path
-                  d="M50 10 A40 40 0 0 0 50 90"
-                  stroke="#bcbcbc"
-                  strokeWidth="3"
-                  strokeDasharray="4 6"
-                  fill="none"
-                />
-              </svg>
+            <div className="flex-1 relative">
+              <div className="relative rounded-2xl overflow-hidden h-[600px]">
+                <div
+                  ref={rightListRef}
+                  className="relative z-10 p-6 h-full overflow-y-auto scroll-smooth space-y-8 pr-4 scrollbar-hide"
+                >
+                  {keyServices.map((service, idx) => (
+                    <motion.div
+                      key={idx}
+                      custom={idx}
+                      variants={serviceItem}
+                      initial="hidden"
+                      animate={rightListControls}
+                      className="relative flex items-start"
+                      style={{ willChange: "transform, opacity" }}
+                    >
+                      <motion.div
+                        className="absolute top-10 flex items-center justify-center z-50"
+                        style={{
+                          transform: "translateX(-25%)",
+                          width: "60px",
+                          height: "60px",
+                        }}
+                        custom={idx}
+                        variants={ring}
+                        initial="hidden"
+                        animate={rightListControls}
+                      >
+                        <div className="relative w-full h-full rounded-full bg-white flex items-center justify-center shadow-md">
+                          {/* rotating ring */}
+                          <svg
+                            className="absolute w-full h-full animate-spin-slow"
+                            viewBox="0 0 100 100"
+                          >
+                            <path
+                              d="M50 10 A40 40 0 0 1 50 90"
+                              stroke="#bcbcbc"
+                              strokeWidth="3"
+                              fill="none"
+                            />
+                            <path
+                              d="M50 10 A40 40 0 0 0 50 90"
+                              stroke="#bcbcbc"
+                              strokeWidth="3"
+                              strokeDasharray="4 6"
+                              fill="none"
+                            />
+                          </svg>
 
-              {/* Number inside */}
-              <span className="text-[#0b0b09] font-semibold text-lg relative z-10">
-                {idx + 1}
-              </span>
+                          {/* Number inside */}
+                          <span className="text-[#0b0b09] font-semibold text-lg relative z-10">
+                            {idx + 1}
+                          </span>
+                        </div>
+                      </motion.div>
+
+                      {/* White card */}
+                      <div className="bg-white rounded-2xl py-6 px-12 border border-[#eaeaea] shadow-[0_4px_10px_rgba(0,0,0,0.06)] transition-transform hover:shadow-[0_6px_14px_rgba(0,0,0,0.08)] ml-6">
+                        <h4 className="text-lg font-semibold text-[#0b0b09] mb-2">
+                          {service.title}
+                        </h4>
+                        <p className="text-neutral-600 text-sm leading-relaxed">
+                          {service.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </motion.div>
-
-          {/* White card */}
-          <div className="bg-white rounded-2xl py-6 px-12 border border-[#eaeaea] shadow-[0_4px_10px_rgba(0,0,0,0.06)] transition-transform hover:shadow-[0_6px_14px_rgba(0,0,0,0.08)] ml-6">
-            <h4 className="text-lg font-semibold text-[#0b0b09] mb-2">
-              {service.title}
-            </h4>
-            <p className="text-neutral-600 text-sm leading-relaxed">
-              {service.desc}
-            </p>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</div>
-
           </div>
         </div>
       </section>
